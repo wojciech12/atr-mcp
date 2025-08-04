@@ -26,9 +26,9 @@ def run_command(cmd, description):
 def run_format_check():
     """Run format check and attempt to fix if needed"""
     print("🎨 Checking format...")
-    if not run_command("npm run format", "Format check"):
+    if not run_command("just fmt", "Format check"):
         print("❌ Format check failed. Running format fix...")
-        if run_command("npm run format:fix", "Format fix"):
+        if run_command("just fmt", "Format fix"):
             print("✅ Format fixed")
         else:
             return False
@@ -38,16 +38,9 @@ def run_format_check():
 def run_lint():
     """Run lint and attempt to fix if needed"""
     print("🔍 Running lint...")
-    if not run_command("npm run lint", "Lint check"):
-        print("❌ Lint failed. Trying to fix...")
-        if run_command("npm run lint:fix", "Lint fix"):
-            if run_command("npm run lint", "Lint check after fix"):
-                return True
-            else:
-                print("❌ Lint errors could not be auto-fixed. Please fix manually.")
-                return False
-        else:
-            return False
+    if not run_command("just lint", "Lint check"):
+        print("❌ Lint failed. Please fix before committing.")
+        return False
     return True
 
 
