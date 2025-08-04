@@ -5,5 +5,4 @@ lint:
     golangci-lint run
 
 fmt:
-    go fmt -w . && \ 
-    just --fmt --unstable
+    golangci-lint format
