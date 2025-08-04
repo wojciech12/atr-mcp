@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "uv run .claude/hooks/git-hook-checker.py"
+            "command": "uv run .claude/hooks/pre_tool_use_action_router.py"
           }
         ]
       }
