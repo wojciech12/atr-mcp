@@ -5,4 +5,4 @@ lint:
     golangci-lint run
 
 fmt:
-    golangci-lint format
+    golangci-lint fmt
