@@ -1,8 +1,5 @@
 {
-  "enabledMcpjsonServers": [
-    "context7",
-    "sequential-thinking"
-  ],
+  "enabledMcpjsonServers": ["context7", "sequential-thinking"],
   "hooks": {
     "PreToolUse": [
       {

@@ -6,3 +6,6 @@ lint:
 
 fmt:
     golangci-lint fmt
+
+prettier:
+    npx prettier --write .

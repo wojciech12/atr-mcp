@@ -1,3 +1,4 @@
+// Package main implements a basic MCP client example.
 package main
 
 import (
@@ -20,7 +21,11 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer session.Close()
+	defer func() {
+		if closeErr := session.Close(); closeErr != nil {
+			log.Printf("Failed to close session: %v", closeErr)
+		}
+	}()
 
 	// Call a tool on the server.
 	params := &mcp.CallToolParams{
@@ -29,10 +34,12 @@ func main() {
 	}
 	res, err := session.CallTool(ctx, params)
 	if err != nil {
-		log.Fatalf("CallTool failed: %v", err)
+		log.Printf("CallTool failed: %v", err)
+		return
 	}
 	if res.IsError {
-		log.Fatal("tool failed")
+		log.Print("tool failed")
+		return
 	}
 	for _, c := range res.Content {
 		log.Print(c.(*mcp.TextContent).Text)
